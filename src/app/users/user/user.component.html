@@ -1,0 +1,29 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>User Id</th>
+            <th>User Name</th>
+            <th>User Email-Id</th>
+            <th>Update User</th>
+            <th>Delete User</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users; let id=index">
+            <td>{{user.userId}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.emailId}}</td>
+            <td>
+                <button class="btn shadow-none" >
+                    <i-bs name="pen"></i-bs>
+                </button>
+            </td>
+            <td>
+                <button class="btn shadow-none" (click)="deleteUser(id)">
+                    <i-bs name="trash"></i-bs>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
