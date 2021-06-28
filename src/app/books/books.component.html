@@ -1,6 +1,49 @@
 <div class="container">
-    <button class="btn btn-success shadow-none">
-        <i-bs name="plus" width="100" height="100">"></i-bs>
-            Add Book</button>
-    <app-book></app-book>
+    <div class="row">
+        <div class="col">
+            <button 
+                    class="btn btn-success shadow-none" 
+                    (click)="showForm(true)"
+                    [disabled]="isAddBookDisabled">
+                            <i-bs name="plus" ></i-bs>
+                    Add Book</button>
+            <app-book></app-book>
+        </div>
+   
+
+        <div class="col">
+            <form class="form" id="rightbox" [hidden]="isFormDisabled">
+                <label *ngIf="isAddBook" for="rightbox"><h4>Add Book</h4></label>
+                <label *ngIf="!isAddBook" for="rightbox"><h4>Update Book</h4></label>
+                <hr>
+                <div class="form-group">
+                    <label for="bookTitle"><h6>Book Title</h6></label>
+                    <input type="text" class="form-control" id="bookTitle" placeholder="Enter Book Title" #bookTitle>
+                    <small class="form-text text-muted">Please enter the title of the new book.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="bookAuthor"><h6>Book Author</h6></label>
+                    <input type="text" class="form-control" id="bookAuthor" placeholder="Enter Book Author" #bookAuthor>
+                    <small class="form-text text-muted">Please enter the author of the new book.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="numberOfPages"><h6>Number of Pages</h6></label>
+                    <input type="number" class="form-control" id="numberOfPages" placeholder="Enter Number of Pages" #bookPages>
+                    <small class="form-text text-muted">Please enter the number of pages of the new book.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="publicationName"><h6>Publication Name</h6></label>
+                    <input type="text" class="form-control" id="publicationName" placeholder="Enter Book Publication" #bookPublication>
+                    <small class="form-text text-muted">Please enter the publication name of the new book.</small>
+                </div>
+                <button *ngIf="isAddBook" type="button" class="btn btn-success" (click)="onAddBook()" style="margin: 5px;">Add Book</button>
+                <button *ngIf="!isAddBook" type="button" class="btn btn-success" (click)="onUpdateBook()" style="margin: 5px;">Update Book</button>
+                <button type="button" class="btn btn-primary" (click)="onClearFields()" style="margin: 5px;">Clear</button>
+                <button type="button" class="btn btn-danger" (click)="onCancel()" style="margin: 5px;">Cancel</button>
+            </form>
+        </div>
+    </div>
 </div>

@@ -1,0 +1,8 @@
+.form{
+    width: 50%;
+}
+#rightbox{
+    position:absolute;
+    right: 0px;
+    top: 105px;
+}

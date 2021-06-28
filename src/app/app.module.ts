@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
 import { BrowserModule } from '@angular/platform-browser';
-import { Router, Routes, RouterModule } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
-import { ToastrService } from 'ngx-toastr';
+import { Routes, RouterModule } from '@angular/router';
+import { BooksService } from './books/books.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,10 +35,8 @@ const routes: Routes=[
     NgxBootstrapIconsModule.pick(allIcons,{ 
       width: '30px', 
       height: '30px',}),
-      BrowserAnimationsModule,
-      ToastrModule.forRoot()
   ],
-  providers: [ToastrService],
+  providers: [BooksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
