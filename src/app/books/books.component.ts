@@ -19,21 +19,26 @@ export class BooksComponent implements OnInit{
   isAddBookDisabled:boolean=false;
   books:Book[]=[];
   bookId!:number;
-  constructor(private booksService: BooksService) { }
+  bookTitleText: string='';
+  bookAuthorText: string='';
+  bookPagesText!: number
+  bookPublicationText: string='';
+  constructor(private booksService: BooksService) { this.booksService.bookUpdate.subscribe(
+    (book: Book)=>{
+       this.isAddBook=false;
+       this.isAddBookDisabled=true;
+      this.bookId=book.id;
+        this.isFormDisabled=false;
+        this.bookTitleText=book.title;
+        this.bookAuthorText=book.author;
+        this.bookPagesText=book.numberOfPages;
+        this.bookPublicationText=book.publisher;
+        //this.fillInputFields(book.title,book.author,book.numberOfPages,book.publisher);
+    }
+  )
+}
 
   ngOnInit(): void {
-   this.booksService.bookUpdate.subscribe(
-     (book: Book)=>{
-       this.bookId=book.id,
-        this.isFormDisabled=false;
-        this.bookTitle.nativeElement.value=book.title;
-        this.bookAuthor.nativeElement.value=book.author;
-        this.bookPages.nativeElement.value=book.numberOfPages;
-        this.bookPublication.nativeElement.value=book.publisher;
-        this.isAddBook=false;
-        this.isAddBookDisabled=true;
-     }
-   )
   }
 
   showForm(isAddBookSelected=false){
@@ -52,7 +57,18 @@ export class BooksComponent implements OnInit{
       this.isAddBook=true;
     }
     this.isAddBookDisabled=true;
+    this.booksService.areDeleteAndUpdateIconsDisabled.emit(true);
   }
+
+  
+  //   fillInputFields(bookTitle: string, bookAuthor: string, bookPages: number, bookPublication: string){
+  //   if(!this.isAddBook && !this.isFormDisabled){
+  //     this.bookTitle.nativeElement.value=this.bookTitle;
+  //     this.bookAuthor.nativeElement.value=this.bookAuthor;
+  //     this.bookPages.nativeElement.value=this.bookPages;
+  //     this.bookPublication.nativeElement.value=this.bookPublication;
+  //   }
+  // }
 
   onAddBook(){
     this.onClearFields();
@@ -83,10 +99,11 @@ export class BooksComponent implements OnInit{
   }
   
   onClearFields(){
-        this.bookTitle.nativeElement.value='';
-        this.bookAuthor.nativeElement.value='';
-        this.bookPages.nativeElement.value='';
-        this.bookPublication.nativeElement.value='';
+    this.isFormDisabled=false;
+        this.bookTitleText='';
+        this.bookAuthorText='';
+        this.bookPagesText=0;
+        this.bookPublicationText='';
   }
 
   onCancel(){

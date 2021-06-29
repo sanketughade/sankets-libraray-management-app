@@ -28,6 +28,12 @@ areDeleteAndUpdateIconsDisabled: boolean=false;
         }
       }
     )
+
+    this.booksService.areDeleteAndUpdateIconsDisabled.subscribe(
+      (areDeleteAndUpdateIconsDisabledRecieved: boolean)=>{
+        this.areDeleteAndUpdateIconsDisabled=areDeleteAndUpdateIconsDisabledRecieved;
+      }
+    )
   }
 
   deleteBook(id: number){
@@ -37,7 +43,7 @@ areDeleteAndUpdateIconsDisabled: boolean=false;
 
   updateBook(id: number){
     this.arrayIndex=this.books.findIndex(element => element.id === id);
-    this.booksService.bookUpdate.emit(this.booksService.getSingleBook(this.arrayIndex));
+    this.booksService.bookUpdate.emit(this.booksService.getSingleBook(id));
     this.books=this.booksService.getBooks();
     this.areDeleteAndUpdateIconsDisabled=true;
  }

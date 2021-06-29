@@ -3,6 +3,8 @@ import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { BooksService } from './books/books.service';
+import { FormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +37,7 @@ const routes: Routes=[
     NgxBootstrapIconsModule.pick(allIcons,{ 
       width: '30px', 
       height: '30px',}),
+      FormsModule
   ],
   providers: [BooksService],
   bootstrap: [AppComponent]

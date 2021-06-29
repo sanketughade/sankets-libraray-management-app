@@ -14,6 +14,7 @@ export class BooksService{
     bookAdded= new EventEmitter<Book[]>();
     bookUpdate = new EventEmitter<Book>();
     isBookUpdatedSuccessfully= new EventEmitter<boolean>();
+    areDeleteAndUpdateIconsDisabled= new EventEmitter<boolean>();
     getBooks(){
         return this.books.slice();
     }
@@ -29,7 +30,8 @@ export class BooksService{
     }
 
     getSingleBook(id: number){
-        return this.books[id];
+        this.arrayIndex=this.books.findIndex(element => element.id === id);
+        return this.books[this.arrayIndex];
     }
 
     updateExistingBook(book: Book){

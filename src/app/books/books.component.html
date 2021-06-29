@@ -11,32 +11,32 @@
         </div>
    
 
-        <div class="col">
-            <form class="form" id="rightbox" [hidden]="isFormDisabled">
+        <div class="col" *ngIf="!isFormDisabled">
+            <form class="form" id="rightbox">
                 <label *ngIf="isAddBook" for="rightbox"><h4>Add Book</h4></label>
                 <label *ngIf="!isAddBook" for="rightbox"><h4>Update Book</h4></label>
                 <hr>
                 <div class="form-group">
                     <label for="bookTitle"><h6>Book Title</h6></label>
-                    <input type="text" class="form-control" id="bookTitle" placeholder="Enter Book Title" #bookTitle>
+                    <input type="text" class="form-control" id="bookTitle" placeholder="Enter Book Title" [(ngModel)]="bookTitleText" [ngModelOptions]="{standalone: true}" #bookTitle>
                     <small class="form-text text-muted">Please enter the title of the new book.</small>
                 </div>
 
                 <div class="form-group">
                     <label for="bookAuthor"><h6>Book Author</h6></label>
-                    <input type="text" class="form-control" id="bookAuthor" placeholder="Enter Book Author" #bookAuthor>
+                    <input type="text" class="form-control" id="bookAuthor" placeholder="Enter Book Author" [(ngModel)]="bookAuthorText" [ngModelOptions]="{standalone: true}" #bookAuthor>
                     <small class="form-text text-muted">Please enter the author of the new book.</small>
                 </div>
 
                 <div class="form-group">
                     <label for="numberOfPages"><h6>Number of Pages</h6></label>
-                    <input type="number" class="form-control" id="numberOfPages" placeholder="Enter Number of Pages" #bookPages>
+                    <input type="number" class="form-control" id="numberOfPages" placeholder="Enter Number of Pages" [(ngModel)]="bookPagesText" [ngModelOptions]="{standalone: true}" #bookPages>
                     <small class="form-text text-muted">Please enter the number of pages of the new book.</small>
                 </div>
 
                 <div class="form-group">
                     <label for="publicationName"><h6>Publication Name</h6></label>
-                    <input type="text" class="form-control" id="publicationName" placeholder="Enter Book Publication" #bookPublication>
+                    <input type="text" class="form-control" id="publicationName" placeholder="Enter Book Publication" [(ngModel)]="bookPublicationText" [ngModelOptions]="{standalone: true}" #bookPublication>
                     <small class="form-text text-muted">Please enter the publication name of the new book.</small>
                 </div>
                 <button *ngIf="isAddBook" type="button" class="btn btn-success" (click)="onAddBook()" style="margin: 5px;">Add Book</button>
