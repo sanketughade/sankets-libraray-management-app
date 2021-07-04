@@ -1,3 +1,4 @@
+import { LocationStrategy } from '@angular/common';
 import {ViewChild, ElementRef } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Book } from './books.model';
@@ -23,7 +24,7 @@ export class BooksComponent implements OnInit{
   bookAuthorText: string='';
   bookPagesText!: number
   bookPublicationText: string='';
-  constructor(private booksService: BooksService) { this.booksService.bookUpdate.subscribe(
+  constructor(private booksService: BooksService, private location: LocationStrategy) { this.booksService.bookUpdate.subscribe(
     (book: Book)=>{
        this.isAddBook=false;
        this.isAddBookDisabled=true;
@@ -35,7 +36,11 @@ export class BooksComponent implements OnInit{
         this.bookPublicationText=book.publisher;
         //this.fillInputFields(book.title,book.author,book.numberOfPages,book.publisher);
     }
-  )
+  );
+    history.pushState(null, '', window.location.href);  
+    this.location.onPopState(() => {
+                history.pushState(null, '', window.location.href);
+    });
 }
 
   ngOnInit(): void {

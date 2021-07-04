@@ -4,8 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { BooksService } from './books/books.service';
 import { FormsModule } from '@angular/forms';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -14,11 +12,11 @@ import { BooksComponent } from './books/books.component';
 import { UsersComponent } from './users/users.component';
 import { BookComponent } from './books/book/book.component';
 import { UserComponent } from './users/user/user.component';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './shared/auth.service';
+import { AuthGuard } from './shared/auth.guard';
 
-const routes: Routes=[
-  {path:'books',component:BooksComponent},
-  {path:'users',component:UsersComponent}
-];
+
 
 @NgModule({
   declarations: [
@@ -28,18 +26,18 @@ const routes: Routes=[
     BooksComponent,
     UsersComponent,
     BookComponent,
-    UserComponent
+    UserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes),
     NgxBootstrapIconsModule.pick(allIcons,{ 
       width: '30px', 
       height: '30px',}),
       FormsModule
   ],
-  providers: [BooksService],
+  providers: [BooksService, AuthService, AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
